@@ -26,9 +26,11 @@ Bonus: At this point in time, when a tool does WebAssembly⇄JavaScript bindings
 
 No, not always. But there are use cases especially well-suited for it, like creating a Game Boy emulator by making use of its low-level capabilities, essentially emitting raw WebAssembly using a nicer syntax. But ordinary code doesn't magically become faster just by compiling to WebAssembly, especially when making extensive use of managed objects that require memory management and garbage collection \(this has its cost in every language\) or talking to the host in structures that WebAssembly isn't currently good at, like strings or more complex objects. Low-level code \(just functions, numbers, math and hard work\) is always the best choice when all you care about is raw performance.
 
-## How does AssemblyScript compare/relate to C++/Rust?
+## How does AssemblyScript compare/relate to C++/Rust/D?
 
 First and foremost: Both Emscripten \(C++\) and Rust have very mature tooling to compile to WebAssembly and are made by the smartest people on this field. Also, both can make use of compiler infrastructure that has been created by many individuals and corporations over years. In contrast, AssemblyScript is a relatively young project with limited resources that strives to create a viable alternative from another perspective.
+
+Dlang is a systems programming language that runs quickly. Unlike AssemblyScript, it has many things you might expect from a modern programming language- closures, bounds checked arrays, compile time function execution, and advanced metaprogramming features. It can compile directly to WebAssembly. 
 
 More precisely: AssemblyScript is putting anything web - from APIs to syntax to WebAssembly - first and _then_ glues it all together, while others lift an existing ecosystem to the web. Fortunately, there is Binaryen, a compiler infrastructure and toolchain library for WebAssembly primarily created by the main author of Emscripten, that we can utilize to considerably close the gap, and we are very thankful for that. It's not as optimal for AssemblyScript-generated code as it is for LLVM-generated code in a few cases, but it's already pretty good and continuously becoming better. It's also noteworthy that AssemblyScript is still behind in specific language features, especially when it comes to OOP, or even general compiler design - but we are working on that.
 
